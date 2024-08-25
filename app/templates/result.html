@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Score Predictor</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='ipl-favicon.ico') }}">
+    <script src="https://kit.fontawesome.com/f13b0bc903.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+            flex-direction: row;
+        }
+
+        .left-side {
+            flex: 1;
+            background-color: rgb(145, 144, 144);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .right-side {
+            flex: 1;
+            background: url('{{ url_for('static', filename='Trophy.jpeg') }}') no-repeat center center;
+            background-size: cover;
+        }
+
+        h1 {
+            font-size: 40px;
+            color: black;
+            padding: 10px 20px;
+            margin-bottom: 40px;
+        }
+
+        .register {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+            color: white;
+            margin: 0 auto; /* Center horizontally */
+        }
+
+        .credits {
+            font-size: 30px;
+            color: black;
+            padding: 10px 20px;
+            margin-top: 40px;
+            margin-bottom: 20px; /* Optional: to add spacing at the bottom */
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: black;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 24px;
+        }
+
+        .social-links a:hover {
+            color: #0073b1; /* LinkedIn blue */
+        }
+
+        .social-links .github:hover {
+            color: #333; /* GitHub black */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Left side with white background -->
+        <div class="left-side">
+            <h1>IPL Batting Score Predictor 🏆</h1>
+
+            <!-- Result in the middle -->
+            <div class="register">
+                <p style="font-size:30px;">The final predicted score (range):<br> {{ lower_limit }} to {{ upper_limit }}</p>
+            </div>
+
+            <!-- Credits and social links at the bottom -->
+            <p class="credits">Made by Adrish Das and Anup Mande</p>
+
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/adrish-das-639072247" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/adrish83887/IPL_Total_Score_Prediction" target="_blank" title="GitHub" class="github">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Right side with IPL image -->
+        <div class="right-side"></div>
+    </div>
+</body>
+</html>

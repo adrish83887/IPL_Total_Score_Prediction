@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Score Predictor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+    font-family: 'Roboto', sans-serif;
+    background: url('static/ipl3.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;   /* Aligns form to the right side */
+    align-items: center;
+    min-height: 100vh;
+    opacity: 0.9;
+}
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            color: #ffcc00;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .register {
+            padding: 20px;
+            background-color: rgba(255, 51, 0, 0.9);
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        select,
+        input.form-input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        input.form-input {
+            background: #fff;
+            color: #000;
+        }
+
+        .myButton {
+            background: linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-shadow: 0 1px 0 #c70067;
+        }
+
+        .myButton:hover {
+            background: linear-gradient(to bottom, #ef027d 5%, #ff5bb0 100%);
+        }
+
+        .myButton:active {
+            background-color: #ef027d;
+            position: relative;
+            top: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>IPL Batting Score Predictor 🏆</h1>
+        <div class="register">
+            <form id="register" action="{{ url_for('predict') }}" method="post">
+                <div class="form-group">
+                    <label for="batting-team">Batting Team:</label>
+                    <select name="batting-team" id="batting-team">
+                        <option value="none">--- Select a Batting team ---</option>
+                        <option value="Mumbai Indians">Mumbai Indians</option>
+                        <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                        <option value="Chennai Super Kings">Chennai Super Kings</option>
+                        <option value="Rajasthan Royals">Rajasthan Royals</option>
+                        <option value="Kings XI Punjab">Kings XI Punjab</option>
+                        <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                        <option value="Delhi Daredevils">Delhi Daredevils</option>
+                        <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bowling-team">Bowling Team:</label>
+                    <select name="bowling-team" id="bowling-team">
+                        <option value="none">--- Select a Bowling team ---</option>
+                        <option value="Mumbai Indians">Mumbai Indians</option>
+                        <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                        <option value="Chennai Super Kings">Chennai Super Kings</option>
+                        <option value="Rajasthan Royals">Rajasthan Royals</option>
+                        <option value="Kings XI Punjab">Kings XI Punjab</option>
+                        <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                        <option value="Delhi Daredevils">Delhi Daredevils</option>
+                        <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="overs">Overs Bowled:</label>
+                    <input class="form-input" type="text" name="overs" id="overs" placeholder="Overs (>= 5.0) Eg. 7.2">
+                </div>
+                <div class="form-group">
+                    <label for="runs">Runs Scored:</label>
+                    <input class="form-input" type="text" name="runs" id="runs" placeholder="Eg. 64">
+                </div>
+                <div class="form-group">
+                    <label for="wickets">Wickets Fallen:</label>
+                    <input class="form-input" type="text" name="wickets" id="wickets" placeholder="Eg. 4">
+                </div>
+                <div class="form-group">
+                    <label for="runs_in_prev_5">Runs Scored in Previous 5 Overs:</label>
+                    <input class="form-input" type="text" name="runs_in_prev_5" id="runs_in_prev_5" placeholder="Eg. 42">
+                </div>
+                <div class="form-group">
+                    <label for="wickets_in_prev_5">Wickets Taken in Previous 5 Overs:</label>
+                    <input class="form-input" type="text" name="wickets_in_prev_5" id="wickets_in_prev_5" placeholder="Eg. 3">
+                </div>
+                <input type="submit" class="myButton" value="Predict Score">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
